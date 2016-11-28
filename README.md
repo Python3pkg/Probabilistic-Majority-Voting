@@ -4,7 +4,6 @@ Generic Majority Judgement Voting procedure for probabilities of categories in m
 <br>
 
 ## Usage
-----
 This is not important enough to go in `pip`, at least I don't think it is, so you'll have to put the source files/folder in correct directory and import the module to use it
 
     from majorityvoting import MajorityVoting
@@ -17,7 +16,6 @@ The initializer takes in 2 arguments
 * categories - a list of names of categories, each category must match the index of it's probability in each and every embedded list in `probabilities`
 
 ## TODOs
-----
 1. It's a pain to manually check the size of the lists and embedded ones, will require input argument to be `pandas.DataFrame` type in the next version 
 2. Window size only supports odd numbers, maybe I actually will not support even numbers, who knows, I need to learn more
 3. When there is multiple majority, the algorithm automatically abandons everything and start from scratch to look for a popular candidate, I might, in future versions, extract the tied candidates and only compare the popular votes of those ones, although most of the cases this is not going to make a difference
