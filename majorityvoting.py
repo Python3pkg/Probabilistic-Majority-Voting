@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import numpy as np
 
 class MajorityVoting(object):
     'Probablistic Majority Voting class'
@@ -11,6 +12,7 @@ class MajorityVoting(object):
         self.categories = categories
         try:
             self.check_arguments()
+            self.probabilities = self.probabilities.tolist()
         except Exception:
             raise               # in which case the object creation (__new__()) will fail
 
@@ -85,7 +87,7 @@ class MajorityVoting(object):
         return maxindex
 
     def check_arguments(self):
-        if type(self.probabilities) is not list or type(self.categories) is not list:
+        if type(self.probabilities) is not np.ndarray or type(self.categories) is not list:
             raise TypeError('Input argument type incorrect')
         elif len(self.probabilities) <= 0:
             raise Exception('No windows with predicted probabilities found in the table')
