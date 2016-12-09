@@ -37,6 +37,9 @@ class MajorityVoting(object):
             results_index.append(maxindex)
             results_names.append(self.categories[maxindex])
 
+            # temp
+            break
+
         # last couple windows, go with popular votes
         for w in range(len(self.probabilities) - (windows - 1) // 2, len(self.probabilities)):
             cut = self.probabilities[w - (windows - 1) // 2:]
@@ -47,23 +50,49 @@ class MajorityVoting(object):
         return results_index, results_names
 
     def get_majority(self, cut, windows, cats):
-        single_window = [[] for i in range(windows)]
+        single_window = [[] for i in range(cats)]
 
         for voter in cut:
-            max = -sys.maxsize - 1
+            cur_max = -sys.maxsize - 1
             for i in range(cats):
-                if voter[i] > max:
-                    max = voter[i]
-            single_window[voter.index(max)].append(voter)           # append to respective windows
+                if voter[i] > cur_max:
+                    cur_max = voter[i]
+            single_window[voter.index(cur_max)].append(voter)       # append to respective windows
         
-        len_list = [[] for i in range(windows)]                     # number of voters for each category
-        for i in range(windows):
+        len_list = [[] for i in range(cats)]                        # number of voters for each category
+        for i in range(cats):
             len_list[i] = len(single_window[i])
-        len_list = sorted(len_list, reverse=True)                   # descending order
+        
+        maxlen = -sys.maxsize - 1
+        for l in len_list:                                          # find the amx
+            maxlen = max(maxlen, l)
+        
+        nummax = 0
+        for l in len_list:                                          # check singularity of max
+            nummax = nummax + 1 if l == maxlen else nummax
+        if nummax > 1:                                             # tied
+            maxindices = []
+            for i in range(len(len_list)):                          # obtain all tied contenders
+                if len_list[i] == maxlen:
+                    maxindices.append(i)
 
-        if len_list[0] == len_list[1]:                              # more than one majority
-            # when electoral collage fails, we count on popular votes
-            return self.get_popular(cut, cats)
+            maxprobs = [0 for _ in range(cats)] 
+            for win in cut:
+                for ind in maxindices:
+                    print(maxprobs[ind])
+                    maxprobs[ind] += win[ind]
+            maxindex = 0
+            maxprob = 0
+            for ind in maxindices:
+                if maxprobs[ind] > maxprob:
+                    maxprob = maxprobs[ind]
+                    maxindex = ind
+            return maxindex
+        # len_list = sorted(len_list, reverse=True)                   # descending order
+
+        # if len_list[0] == len_list[1]:                              # more than one majority
+        #     # when electoral collage fails, we count on popular votes
+        #     return self.get_popular(cut, cats)
         else:                                                        # clear winner
             maxlen = 0
             maxindex = 0
