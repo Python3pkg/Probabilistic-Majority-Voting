@@ -37,9 +37,6 @@ class MajorityVoting(object):
             results_index.append(maxindex)
             results_names.append(self.categories[maxindex])
 
-            # temp
-            break
-
         # last couple windows, go with popular votes
         for w in range(len(self.probabilities) - (windows - 1) // 2, len(self.probabilities)):
             cut = self.probabilities[w - (windows - 1) // 2:]
@@ -80,7 +77,6 @@ class MajorityVoting(object):
             maxprobs = [0 for _ in range(cats)] 
             for win in cut:
                 for ind in maxindices:
-                    print(maxprobs[ind])
                     maxprobs[ind] += win[ind]
             maxindex = 0
             maxprob = 0
