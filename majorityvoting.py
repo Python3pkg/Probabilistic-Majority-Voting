@@ -59,6 +59,7 @@ class MajorityVoting(object):
                     cur_max = voter[i]
             single_window[voter.index(cur_max)].append(voter)       # append to respective windows
         
+        # the new way
         len_list = [[] for i in range(cats)]                        # number of voters for each category
         for i in range(cats):
             len_list[i] = len(single_window[i])
@@ -88,6 +89,8 @@ class MajorityVoting(object):
                     maxprob = maxprobs[ind]
                     maxindex = ind
             return maxindex
+
+        # the old way
         # len_list = sorted(len_list, reverse=True)                   # descending order
 
         # if len_list[0] == len_list[1]:                              # more than one majority
