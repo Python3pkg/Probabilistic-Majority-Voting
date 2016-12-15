@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+__author__      = 'Tao Peter Wang'
+__version__     = '0.1.2'
+__license__     = 'MIT'
+__email__       = 'peterwangtao0@hotmail.com'
+__date__        = 'Dec-14-2016'
+
 import sys
 import numpy as np
 
