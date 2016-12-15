@@ -9,5 +9,8 @@ setup(
     url = 'https://github.com/TPeterW/Probabilistic-Majority-Voting',
     download_url = 'https://github.com/TPeterW/Probabilistic-Majority-Voting/tarball/0.1.2',
     keywords = ['majority voting', 'sklearn', 'machine learning', 'probability', 'majority judgement'],
+    install_requires=[
+          'numpy',
+    ],
     classifiers = [],
 )
