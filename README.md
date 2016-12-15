@@ -8,8 +8,8 @@ This is not important enough to go in `pip`, at least I don't think it is, so yo
 
     from majorityvoting import MajorityVoting
 
-    mv = MajorityVoting(probabilities, categories)
-    indices, names = mv.vote(windows=5)
+    voter = MajorityVoting.Voter(probabilities, categories)
+    indices, names = voter.vote(windows=5)
 
 The initializer takes in 2 arguments
 * probabilities - a `numpy.ndarray` of lists (2d array) with equal length, each embedded list contains the probability of categories predicted by some machine learning algorithm, exactly the same you will get from [sklearn](http://scikit-learn.org/stable/)'s `predict_proba()` function
