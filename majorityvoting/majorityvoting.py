@@ -4,7 +4,7 @@
 import sys
 import numpy as np
 
-class MajorityVoting(object):
+class Voter(object):
     'Probablistic Majority Voting class'
 
     def __init__(self, probabilities, categories):
