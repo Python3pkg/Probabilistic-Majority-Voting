@@ -4,7 +4,7 @@ Generic Majority Judgement Voting procedure for probabilities of categories in m
 <br>
 
 ## Usage
-To install through PyPI
+To install through PyPI in command line
 
     pip install majorityvoting
 
