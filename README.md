@@ -16,7 +16,7 @@ And to use majority judgement voting in your code
     indices, names = voter.vote(windows=5)
 
 The initializer takes in 2 arguments
-* probabilities - a `numpy.ndarray` of lists (2d array) with equal length, each embedded list contains the probability of categories predicted by some machine learning algorithm, exactly the same you will get from [scikit-learn](http://scikit-learn.org/stable/)'s `predict_proba()` function
+* probabilities - a `numpy.ndarray` of lists (2d array) with equal length, each embedded list contains the probability of categories predicted by some machine learning algorithm, exactly the same you will get from [scikit-learn](http://scikit-learn.org/stable/)'s [`predict_proba()`](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression.predict_proba) function
 * categories - a list of names of categories, each category must match the index of it's probability in each and every embedded list in `probabilities`
 
 ## TODOs
