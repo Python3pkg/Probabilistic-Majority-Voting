@@ -32,27 +32,27 @@ class Voter(object):
         # first couple windows, go with popular votes
         for w in range(0, (windows - 1) // 2):
             cut = self.probabilities[:w + (windows - 1) // 2 + 1]
-            maxindex = self.get_popular(cut, len(self.categories))
+            maxindex = self.__get_popular(cut, len(self.categories))
             results_index.append(maxindex)
             results_names.append(self.categories[maxindex])
 
         # middle part
         for w in range((windows - 1) // 2, len(self.probabilities) - (windows - 1) // 2):           # window for which to calculate the voting results
             cut = self.probabilities[w - (windows - 1) // 2 : w + (windows - 1) // 2 + 1]           # all voters
-            maxindex = self.get_majority(cut, windows, len(self.categories))
+            maxindex = self.__get_majority(cut, windows, len(self.categories))
             results_index.append(maxindex)
             results_names.append(self.categories[maxindex])
 
         # last couple windows, go with popular votes
         for w in range(len(self.probabilities) - (windows - 1) // 2, len(self.probabilities)):
             cut = self.probabilities[w - (windows - 1) // 2:]
-            maxindex = self.get_popular(cut, len(self.categories))
+            maxindex = self.__get_popular(cut, len(self.categories))
             results_index.append(maxindex)
             results_names.append(self.categories[maxindex])
 
         return results_index, results_names
 
-    def get_majority(self, cut, windows, cats):
+    def __get_majority(self, cut, windows, cats):
         single_window = [[] for i in range(cats)]
 
         for voter in cut:
@@ -97,7 +97,7 @@ class Voter(object):
 
         # if len_list[0] == len_list[1]:                              # more than one majority
         #     # when electoral collage fails, we count on popular votes
-        #     return self.get_popular(cut, cats)
+        #     return self.__get_popular(cut, cats)
         else:                                                        # clear winner
             maxlen = 0
             maxindex = 0
@@ -107,7 +107,7 @@ class Voter(object):
                     maxindex = i
             return maxindex
 
-    def get_popular(self, cut, cats):
+    def __get_popular(self, cut, cats):
         popvotes = [0] * cats
         for voter in cut:
             for i in range(cats):
